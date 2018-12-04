@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="498.432" Width="880.27">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="272" Margin="26,24,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="564"/>
-        <Button x:Name="SendByteButton" Content="Byte" HorizontalAlignment="Left" Height="21" Margin="102,334,0,0" VerticalAlignment="Top" Width="47"/>
-        <Button x:Name="SendInt16Button" Content="Int16" HorizontalAlignment="Left" Margin="101,355,0,0" VerticalAlignment="Top" Width="48" Height="22"/>
+        <TextBox x:Name="MainText" HorizontalAlignment="Left" Height="272" Margin="26,24,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="564"/>
+        <Button x:Name="SendByteButton" Content="Byte" HorizontalAlignment="Left" Height="21" Margin="102,334,0,0" VerticalAlignment="Top" Width="47" Click="SendByteButton_Click"/>
+        <Button x:Name="SendInt16Button" Content="Int16" HorizontalAlignment="Left" Margin="101,355,0,0" VerticalAlignment="Top" Width="48" Height="22" Click="SendInt16Button_Click"/>
         <Button x:Name="SendStringButton" Content="String" HorizontalAlignment="Left" Height="22" Margin="101,377,0,0" VerticalAlignment="Top" Width="48"/>
         <Button x:Name="SearchArduinoCom" Content="Search" HorizontalAlignment="Left" Height="32" Margin="637,61,0,0" VerticalAlignment="Top" Width="109" Click="SearchArduinoCom_Click"/>
         <Label x:Name="ArduinoCom" Content="     Not Found" HorizontalAlignment="Left" Height="33" Margin="637,98,0,0" VerticalAlignment="Top" Width="109"/>
@@ -23,13 +23,13 @@
         <Label x:Name="Hex" Content="HEX" HorizontalAlignment="Left" Height="23" Margin="238,348,0,0" VerticalAlignment="Top" Width="49" FontSize="10"/>
         <Label x:Name="DEC" Content="DEC" HorizontalAlignment="Left" Height="22" Margin="238,371,0,0" VerticalAlignment="Top" Width="49" FontSize="10"/>
         <Label x:Name="BIN" Content="BIN" HorizontalAlignment="Left" Height="25" Margin="238,393,0,0" VerticalAlignment="Top" Width="49" FontSize="10"/>
-        <TextBlock x:Name="StringData" HorizontalAlignment="Left" Height="23" Margin="425,386,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="178"/>
+        <TextBlock x:Name="StringData" HorizontalAlignment="Left" Height="23" Margin="425,386,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="178" FontFamily="Times New Roman"/>
         <Label x:Name="StringLabel" Content="String" HorizontalAlignment="Left" Height="32" Margin="425,349,0,0" VerticalAlignment="Top" Width="51"/>
         <TextBlock x:Name="StringLength" HorizontalAlignment="Left" Height="21" Margin="510,316,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="61"/>
         <Label Content="  Search Arduino" HorizontalAlignment="Left" Height="32" Margin="637,24,0,0" VerticalAlignment="Top" Width="109"/>
-        <TextBox HorizontalAlignment="Left" Height="21" Margin="26,334,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="71"/>
-        <TextBox HorizontalAlignment="Left" Height="21" Margin="26,356,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="71"/>
-        <TextBox HorizontalAlignment="Left" Height="21" Margin="26,377,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="71"/>
+        <TextBox x:Name="SendTextByte" HorizontalAlignment="Left" Height="21" Margin="26,334,0,0" TextWrapping="Wrap" Text="28" VerticalAlignment="Top" Width="71"/>
+        <TextBox x:Name="SendTextInt16" HorizontalAlignment="Left" Height="21" Margin="26,356,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="71"/>
+        <TextBox x:Name="SendTextString" HorizontalAlignment="Left" Height="21" Margin="26,377,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="71"/>
         <Label Content=" Send (HEX)" HorizontalAlignment="Left" Height="28" Margin="74,301,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>

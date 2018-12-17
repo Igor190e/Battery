@@ -70,7 +70,8 @@ namespace Battery
                     break;
                 }
              
-            }  
+            }
+            Com.DiscardInBuffer();
         }
 
         private void ReadDataButton_Click(object sender, RoutedEventArgs e)
@@ -78,9 +79,7 @@ namespace Battery
 
             if (ByteRadioButton.IsChecked==true)
             {
-                // Com = new SerialPort(arduinoCom, 9600);
-                //Com.Open();
-                //Com.ReadTimeout = 3000;
+
                 System.Threading.Thread.Sleep(500);
                 Com.Write("ReadByte");
 
@@ -89,101 +88,76 @@ namespace Battery
 
                 InInt = int.Parse(Com.ReadLine());
 
-                //System.Threading.Thread.Sleep(500);
-                //try
-                //{
-                //    InString = Com.ReadLine();
-                //}
-                //catch { }
-                //InInt = int.Parse(InString);
-                //HexData.Text = InString;
                 HexData.Text = Convert.ToString(InInt, 16);
                 DecData.Text = Convert.ToString(InInt);
                 BinData.Text = Convert.ToString(InInt, 2);
-                //Com.Close();
+                MainText.Text += $"Receive byte\n";
+                MainText.Text += $"HEX =  {HexData.Text}\n";
+                MainText.Text += $"DEC =  {DecData.Text}\n";
+                MainText.Text += $"BIN =  {BinData.Text}\n";
+
             }
             else if (Int16RadioButton.IsChecked == true)
             {
-                //Com = new SerialPort(arduinoCom, 9600);
-                //Com.Open();
-                //Com.ReadTimeout = 3000;
+
                 System.Threading.Thread.Sleep(1000);
                 Com.Write("ReadInt16");
                 while (Com.BytesToRead <= 0)
                     System.Threading.Thread.Sleep(1000);
-                //try
-                //{
-                //    InString = Com.ReadLine();
-                //}
-                //catch { }
-                //InInt = Int16.Parse(InString);
-                //InString = Com.ReadLine();
-                //InInt = Com.ReadByte();
-                //InInt = InInt << 8;
-                //System.Threading.Thread.Sleep(500);
-                //InInt += Com.ReadByte();
+
                 InInt = int.Parse(Com.ReadLine());
                 HexData.Text = Convert.ToString(InInt, 16);
                 DecData.Text = Convert.ToString(InInt);
                 BinData.Text = Convert.ToString(InInt, 2);
-                //Com.Close();
+                MainText.Text += $"Receive word\n";
+                MainText.Text += $"HEX =  {HexData.Text}\n";
+                MainText.Text += $"DEC =  {DecData.Text}\n";
+                MainText.Text += $"BIN =  {BinData.Text}\n";
+
             }
             else if (StringRadioButton.IsChecked == true)
             {
                 InString = "";
                 int buf;
-
-                //byte[] bt=new byte[5];
-
-                
+   
                 Com.Write("ReadString");
-                
-                //System.Threading.Thread.Sleep(1000);
-                //Com.Write(StringLength.Text);
-                //bt = new byte[int.Parse(StringLength.Text)];
 
                 while (Com.BytesToRead<=0)
                 System.Threading.Thread.Sleep(1000);
-
 
                 byte[] b = new byte[int.Parse(StringLength.Text)];
                 Com.Read(b, 0, int.Parse(StringLength.Text));
                 string s = Encoding.ASCII.GetString(b);
 
-                InString = s;// asciiEncoding.GetString(bt);
+                InString = s;
 
 
-
-
-                MainText.Text = InString;
+                MainText.Text += $"Receive string\n {InString}\n";
                 StringData.Text = InString;
-                //Com.Close();
+             
             }
         }
 
         private void SendByteButton_Click(object sender, RoutedEventArgs e)
         {
-            //Com = new SerialPort(arduinoCom, 9600);
-            //Com.Open();
-            //Com.ReadTimeout = 3000;
-            //System.Threading.Thread.Sleep(1000);
+           
             Com.Write("WriteByte");
-            System.Threading.Thread.Sleep(500);
-            int buf = int.Parse(SendTextByte.Text, System.Globalization.NumberStyles.HexNumber);
-            //Convert.ToInt32(SendTextByte.Text,16);
+            System.Threading.Thread.Sleep(400);
+            int buf = int.Parse(SendTextByte.Text, System.Globalization.NumberStyles.HexNumber);          
             Com.Write(Convert.ToString(buf));
+            MainText.Text += $"Send    0x{SendTextByte.Text}\n";//InString;
             System.Threading.Thread.Sleep(500);
-            //Com.Close();
+
+          
         }
 
         private void SendInt16Button_Click(object sender, RoutedEventArgs e)
-        {
-            //Com = new SerialPort(arduinoCom, 9600);
-            //Com.Open();
-            //Com.ReadTimeout = 3000;
-            Com.WriteLine("WriteInt16");
+        {           
+            Com.WriteLine("WriteInt16");           
             Com.WriteLine($"0x{SendTextInt16}");
-            //Com.Close();
+            System.Threading.Thread.Sleep(400);
+            MainText.Text += $"Send    0x{SendTextInt16.Text}\n";//InString;
+            System.Threading.Thread.Sleep(500);
         }
     }
 }
